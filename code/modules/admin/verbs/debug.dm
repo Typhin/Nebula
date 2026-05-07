@@ -313,8 +313,7 @@
 	for(var/obj/machinery/rad_collector/Rad in SSmachines.machinery)
 		if(Rad.anchored)
 			if(!Rad.loaded_tank)
-				Rad.loaded_tank = new /obj/item/tank/hydrogen(Rad)
-				Rad.loaded_tank.air_contents.gas[/decl/material/gas/hydrogen] = 70
+				Rad.loaded_tank = new /obj/item/tank/hydrogen/collector(Rad)
 				Rad.drainratio = 0
 			if(!Rad.active)
 				Rad.toggle_power()
@@ -453,12 +452,7 @@
 	if (!theme)
 		theme = /datum/exoplanet_theme
 
-	var/daycycle = alert("Should the planet have a day-night cycle?","Day Night Cycle", "Yes", "No")
-
-	if (daycycle == "Yes")
-		daycycle = TRUE
-	else
-		daycycle = FALSE
+	var/daycycle = alert("Should the planet have a day-night cycle?","Day Night Cycle", "Yes", "No") == "Yes"
 
 	var/last_chance = alert("Spawn exoplanet?", "Final Confirmation", "Yes", "Cancel")
 
